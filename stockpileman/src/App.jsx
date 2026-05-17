@@ -6,8 +6,13 @@ import ItemEdit from './Components/ItemEdit.jsx';
 import { Container } from 'react-bootstrap';
 import ItemAdd from './Components/ItemAdd.jsx';
 import ItemView from './Components/Views/ItemView.jsx';
+import liff from '@line/liff';
 
 function App() {
+  liff.init({
+    liffId: import.meta.env.VITE_LIFF_ID,
+  });
+
   return (
     <BrowserRouter>
       <header className="sticky-top">
