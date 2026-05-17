@@ -6,11 +6,13 @@ function MenuComponent() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#">StockpileMan</Navbar.Brand>
+        <Navbar.Brand as="a" href="/">StockpileMan</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="menubar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#">メニュー</Nav.Link>
+            <Nav.Link href="/">在庫管理</Nav.Link>
+            <Nav.Link href="/Add">新規登録</Nav.Link>
+            <Nav.Link href="/Edit/1">編集</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

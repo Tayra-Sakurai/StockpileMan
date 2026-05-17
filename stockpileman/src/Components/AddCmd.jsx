@@ -1,5 +1,5 @@
 import Button from 'react-bootstrap/Button';
-import supabase from '../client';
+import { supabase } from '../client';
 
 /**
  * Adding the entry to the database.

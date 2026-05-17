@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { useParams } from "react-router-dom";
 import { supabase } from "../client";
+import OpCmd from "./OpCmd";
 
 function ItemEdit() {
   const { id } = useParams();
+  let itid = parseInt(id);
 
   const [ category, setCategory ] = useState('');
   const [ item, setItem ] = useState('');
@@ -46,7 +48,38 @@ function ItemEdit() {
       };
       dataSetup();
     }, [id]
-  )
+  );
+
+  const updateCallback = async event => {
+    /**
+     * The category id.
+     * @type {number}
+     */
+    let catId;
+    const { data: [cat] } = await supabase
+      .from('Categories')
+      .select()
+      .eq('Name', category);
+    if (cat == null) {
+      const { data: [newCat] } = await supabase
+        .from('Categories')
+        .insert({ 'Name': category })
+        .select();
+      catId = newCat.Id;
+    } else {
+      catId = cat.Id;
+    }
+    await supabase
+      .from('Items')
+      .update({
+        Name: item,
+        CategoryId: catId,
+        Notes: notes,
+        BoughtAt: new Date(dateBought).toISOString(),
+        ExpireDate: new Date(life).toISOString()
+      })
+      .eq('Id', itid);
+  };
 
   return (
     <Form>
@@ -70,6 +103,11 @@ function ItemEdit() {
         <Form.Label>備考</Form.Label>
         <Form.Control as="textarea" rows={3} value={notes} onChange={evt => setNotes(evt.target.value)} />
       </Form.Group>
+      <OpCmd
+        identity={id}
+        table="Items"
+        updateCallback={updateCallback}
+      />
     </Form>
   );
 }
