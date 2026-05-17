@@ -1,16 +1,18 @@
-import Button from 'react-bootstrap/Button';
 import './App.css';
+import Copyright from './Components/Copyright';
 import MenuComponent from './Components/MenuComponent';
-import { useState } from 'react';
 
 function App() {
-  const { counter, setCounter } = useState(0);
-
   return (
     <>
-      <MenuComponent />
-      <p>ようこそ</p>
-      <Button type="button" onClick={() => setCounter(counter + 1)}>Count {counter}</Button>
+      <header>
+        <MenuComponent />
+      </header>
+      <main>
+      </main>
+      <footer>
+        <Copyright />
+      </footer>
     </>
   )
 }
