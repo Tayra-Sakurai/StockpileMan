@@ -1,9 +1,9 @@
-import { Form } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 
 function ItemEdit() {
   return (
     <Form>
-      <Form.Group className="mb-3" controlI="NameCat">
+      <Form.Group className="mb-3" controlId="NameCat">
         <Form.Label>名称</Form.Label>
         <Form.Control type="text" />
       </Form.Group>

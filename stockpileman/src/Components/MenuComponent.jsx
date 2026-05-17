@@ -4,11 +4,11 @@ import Navbar from 'react-bootstrap/Navbar';
 
 function MenuComponent() {
   return (
-    <Navbar expand="1g" className="bg-body-tertially">
+    <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand href="#">StockpileMan</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="manubar-nav">
+        <Navbar.Collapse id="menubar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#">メニュー</Nav.Link>
           </Nav>
