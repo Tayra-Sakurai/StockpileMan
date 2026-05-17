@@ -10,9 +10,11 @@ function App() {
       <header>
         <MenuComponent />
       </header>
-      <Routes>
-        <Route path="/" element={<ItemEdit />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/Edit/:id" element={<ItemEdit />} />
+        </Routes>
+      </main>
       <footer>
         <Copyright />
       </footer>
