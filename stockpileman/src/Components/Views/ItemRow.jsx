@@ -13,7 +13,7 @@ function ItemRow(props) {
       <td>{name}</td>
       <td>{notes}</td>
       <td>
-        <Link to={`/Edit/{dId}`}>編集</Link>
+        <Link to={`/Edit/${dId}`}>編集</Link>
       </td>
     </tr>
   );
