@@ -19,6 +19,7 @@ function FilterForm() {
           .select();
 
         if (!data) {
+          console.error('Error at FilterForm.jsx!');
           console.error(error);
         } else {
           setCategories(data.map(value => value.Name));
