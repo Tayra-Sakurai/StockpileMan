@@ -70,7 +70,7 @@ function FilteredResult() {
               continue;
             }
           }
-          result.append(datumn);
+          result.push(datumn);
         }
         setItems(result);
       };
