@@ -29,7 +29,7 @@ function ItemTable(props) {
         <th>登録 ID</th>
         <th>名称</th>
         <th>商品名</th>
-        <th>備考</th>
+        <th>賞味期限</th>
         <th>操作</th>
       </thead>
       <tbody>
@@ -37,7 +37,7 @@ function ItemTable(props) {
           <ItemRow
             dataId={item.Id}
             name={item.Name}
-            notes={item.Notes}
+            expireDate={item.ExpireDate}
             category={item.Categories.Name}
           />
         ))}

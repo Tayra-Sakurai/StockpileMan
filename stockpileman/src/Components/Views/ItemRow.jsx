@@ -4,14 +4,14 @@ function ItemRow(props) {
   const dId = props.dataId;
   const name = props.name;
   const category = props.category;
-  const notes = props.notes;
+  const expireDate = new Date(props.expireDate).toDateString();
 
   return (
     <tr>
       <td>{dId}</td>
       <td>{category}</td>
       <td>{name}</td>
-      <td>{notes}</td>
+      <td>{expireDate}</td>
       <td>
         <Link to={`/Edit/${dId}`}>編集</Link>
       </td>
