@@ -10,9 +10,9 @@ function MenuComponent() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="menubar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">åœ¨åº«æ¤œç´¢</Nav.Link>
-            <Nav.Link href="/Add">æ–°è¦ç™»éŒ²</Nav.Link>
-            <Nav.Link href="/Manage">åœ¨åº«ç®¡ç†</Nav.Link>
+            <Nav.Link href="/">İŒÉŒŸõ</Nav.Link>
+            <Nav.Link href="/Add">V‹K“o˜^</Nav.Link>
+            <Nav.Link href="/Manage">İŒÉŠÇ—</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
