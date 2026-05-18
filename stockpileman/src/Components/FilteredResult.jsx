@@ -35,7 +35,8 @@ function FilteredResult() {
                 Name
               )
           `)
-          .eq('CategoryId', id);
+            .eq('CategoryId', id);
+        console.log(items);
         if (items.length == 0) {
           console.error(err);
           return;
