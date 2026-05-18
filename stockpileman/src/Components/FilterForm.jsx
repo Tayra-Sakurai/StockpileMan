@@ -27,7 +27,7 @@ function FilterForm() {
         }
       };
       getCategories();
-    }
+    }, []
   )
 
   /**
