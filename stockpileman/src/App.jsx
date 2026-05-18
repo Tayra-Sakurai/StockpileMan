@@ -7,6 +7,7 @@ import { Container } from 'react-bootstrap';
 import ItemAdd from './Components/ItemAdd.jsx';
 import ItemView from './Components/Views/ItemView.jsx';
 import liff from '@line/liff';
+import FilteredResult from './Components/FilteredResult.jsx';
 
 function App() {
   liff.init({
@@ -21,7 +22,8 @@ function App() {
       <main>
         <Container>
           <Routes>
-            <Route path="/" element={<ItemView />} />
+            <Route path="/" element={<FilteredResult />} />
+            <Route path="/Manage" element={<ItemView />} />
             <Route path="/Add" element={<ItemAdd />} />
             <Route path="/Edit/:id" element={<ItemEdit />} />
           </Routes>
