@@ -23,7 +23,7 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<FilteredResult />} />
-            <Route path="/Manage" element={<ItemView />} />
+            <Route path="/View" element={<ItemView />} />
             <Route path="/Add" element={<ItemAdd />} />
             <Route path="/Edit/:id" element={<ItemEdit />} />
           </Routes>
