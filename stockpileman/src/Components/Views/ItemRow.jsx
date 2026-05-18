@@ -4,7 +4,7 @@ function ItemRow(props) {
   const dId = props.dataId;
   const name = props.name;
   const category = props.category;
-  const expireDate = new Date(props.expireDate).toDateString();
+  const expireDate = new Date(props.expireDate).toISOString().replace(/T.*$/, '');
 
   return (
     <tr>
