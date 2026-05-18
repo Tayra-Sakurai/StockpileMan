@@ -43,6 +43,7 @@ function FilteredResult() {
           setItems(items);
         }
       };
+      search();
     }, [searchParams]
   );
 
