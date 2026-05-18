@@ -1,23 +1,27 @@
 import { Button } from "react-bootstrap";
 import { supabase } from '../client';
-
-/**
- * Deletes the data.
- * @param {number} id The identifier of the element.
- * @param {string} table The name of the table.
- */
-async function DeleteData(id, table) {
-  await supabase
-    .from(table)
-    .delete()
-    .eq('Id', id);
-}
+import { useNavigate } from "react-router-dom";
 
 function OpCmd(props) {
   /**
    * @callback Update
    * @param {Event} event The event object of the click event.
    */
+
+  const navigate = useNavigate();
+
+  /**
+   * Deletes the data.
+   * @param {number} id The identifier of the element.
+   * @param {string} table The name of the table.
+   */
+  async function DeleteData(id, table) {
+    await supabase
+      .from(table)
+      .delete()
+      .eq('Id', id);
+    navigate('/View');
+  }
 
   /**
    * The identifier.
