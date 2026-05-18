@@ -18,7 +18,7 @@ function FilterForm() {
           .from('Categories')
           .select('*');
 
-        if (!data) {
+        if (!data || data.length == 0) {
           console.error('Error at FilterForm.jsx!');
           console.error(error);
         } else {
