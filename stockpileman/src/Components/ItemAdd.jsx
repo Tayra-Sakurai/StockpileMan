@@ -1,7 +1,7 @@
 import AddCmd from './AddCmd';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Form } from "react-bootstrap";
-import { supabase } from '../client';
+import CategorySelect from './CategoryDetails/CategorySelect';
 
 function ItemAdd() {
   const [category, setCategory] = useState(1);
@@ -9,39 +9,13 @@ function ItemAdd() {
   const [dateBought, setDateBought] = useState(new Date().toISOString().replace(/T.*$/, ''));
   const [life, setLife] = useState(new Date().toISOString().replace(/T.*$/, ''));
   const [notes, setNotes] = useState('');
-  const [categories, setCategories] = useState([]);
-
-  useEffect(
-    () => {
-      async function effectAsync() {
-        const { data, error } = await supabase
-          .from('Categories')
-          .select();
-        if (data instanceof Array) {
-          setCategories(data);
-        } else if (error != null) {
-          console.error(error);
-        } else {
-          return;
-        }
-      }
-      effectAsync();
-    }, []
-  );
 
   return (
     <>
       <h1>項目を追加する</h1>
       <p>以下のフォームから項目を追加します．</p>
       <Form>
-        <Form.Group className="mb-3" controlId="NameCat">
-          <Form.Label>名称</Form.Label>
-          <Form.Select value={category} onChange={evt => console.info(setCategory(parseInt(evt.target.value)) ?? '読み込まれたぞ')}>
-            {categories.map(cat => (
-              <option value={cat.Id} selected={category == cat.Id}>{cat.Name}</option>
-            ))}
-          </Form.Select>
-        </Form.Group>
+        <CategorySelect value={category} onChange={event => setCategory(parseInt(event.target.value))} />
         <Form.Group className="mb-3" controlId="NameIt">
           <Form.Label>商品名</Form.Label>
           <Form.Control type="text" value={item} onChange={evt => setItem(evt.target.value)} />

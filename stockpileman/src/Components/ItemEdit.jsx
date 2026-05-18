@@ -3,12 +3,13 @@ import Form from "react-bootstrap/Form";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../client";
 import OpCmd from "./OpCmd";
+import CategorySelect from './CategoryDetails/CategorySelect';
 
 function ItemEdit() {
   const { id } = useParams();
   let itid = parseInt(id);
 
-  const [ category, setCategory ] = useState('');
+  const [ category, setCategory ] = useState(1);
   const [ item, setItem ] = useState('');
   const curDate = new Date();
   const curStr = curDate.toISOString().replace(/T.*$/, '');
@@ -22,16 +23,16 @@ function ItemEdit() {
       const dataSetup = async () => {
         const { data: [i], error } = await supabase
           .from("Items")
-          .select('*, Categories(Name)')
+          .select()
           .eq('Id', parseInt(id));
         if (error != null)
           console.error(error);
-        else if (i == null || i === undefined) {
+        else if (i == null) {
           console.error('No data has been returned.');
           return;
         }
         console.log(item);
-        setCategory(i.Categories.Name);
+        setCategory(i.CategoryId);
         setItem(i.Name);
         /**
          * The date when the item was bought.
@@ -51,30 +52,12 @@ function ItemEdit() {
     }, [id]
   );
 
-  const updateCallback = async event => {
-    /**
-     * The category id.
-     * @type {number}
-     */
-    let catId;
-    const { data: [cat] } = await supabase
-      .from('Categories')
-      .select()
-      .eq('Name', category);
-    if (cat == null) {
-      const { data: [newCat] } = await supabase
-        .from('Categories')
-        .insert({ 'Name': category })
-        .select();
-      catId = newCat.Id;
-    } else {
-      catId = cat.Id;
-    }
+  const updateCallback = async () => {
     await supabase
       .from('Items')
       .update({
         Name: item,
-        CategoryId: catId,
+        CategoryId: category,
         Notes: notes,
         BoughtAt: new Date(dateBought).toISOString(),
         ExpireDate: new Date(life).toISOString()
@@ -85,10 +68,7 @@ function ItemEdit() {
 
   return (
     <Form>
-      <Form.Group className="mb-3" controlId="NameCat">
-        <Form.Label>名称</Form.Label>
-        <Form.Control type="text" value={category} onChange={evt => setCategory(evt.target.value)} />
-      </Form.Group>
+      <CategorySelect value={category} onChange={event => setCategory(parseInt(event.target.value))} />
       <Form.Group className="mb-3" controlId="NameIt">
         <Form.Label>商品名</Form.Label>
         <Form.Control type="text" value={item} onChange={evt => setItem(evt.target.value)} />
