@@ -1,5 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import { supabase } from '../client';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * Adding the entry to the database.
@@ -24,11 +25,13 @@ function AddCmd(props) {
    */
   const data = props.data;
 
+  const navigate = useNavigate();
+
   return (
     <>
       <Button
         variant="success"
-        onClick={() => AddEntry(data, table)}
+        onClick={() => AddEntry(data, table).then(() => navigate('/View'))}
       >
         登録
       </Button>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../client";
 import OpCmd from "./OpCmd";
 
@@ -15,6 +15,7 @@ function ItemEdit() {
   const [ dateBought, setDateBought ] = useState(curStr);
   const [life, setLife] = useState(curStr);
   const [notes, setNotes] = useState('');
+  const navigate = useNavigate();
 
   useEffect(
     () => {
@@ -79,6 +80,7 @@ function ItemEdit() {
         ExpireDate: new Date(life).toISOString()
       })
       .eq('Id', itid);
+    navigate('/View');
   };
 
   return (
