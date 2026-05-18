@@ -10,9 +10,9 @@ function MenuComponent() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="menubar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">在庫管理</Nav.Link>
+            <Nav.Link href="/">在庫検索</Nav.Link>
             <Nav.Link href="/Add">新規登録</Nav.Link>
-            <Nav.Link href="/Edit/1">編集</Nav.Link>
+            <Nav.Link href="/View">在庫管理</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
