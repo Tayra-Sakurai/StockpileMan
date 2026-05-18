@@ -16,7 +16,7 @@ function FilterForm() {
       const getCategories = async () => {
         const { data, error } = await supabase
           .from('Categories')
-          .select();
+          .select('*');
 
         if (!data) {
           console.error('Error at FilterForm.jsx!');
