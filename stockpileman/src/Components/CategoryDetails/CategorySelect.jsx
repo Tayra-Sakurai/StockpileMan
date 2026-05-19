@@ -6,7 +6,7 @@ import { supabase } from "../../client";
  * @typedef {Object} ParamType
  * @property {?string} controlId The control's identifier.
  * @property {number} value The displaying ID of the selected category.
- * @property {import("react").ChangeEventHandler<HTMLSelectElement>} onChange The event handler for changes.
+ * @property {import("react").ChangeEventHandler<HTMLSelectElement, HTMLSelectElement>} onChange The event handler for changes.
  */
 
 /**
@@ -86,6 +86,7 @@ function CategorySelect({ controlId, value, onChange }) {
       <Form.Group className="mb-3" controlId={controlId}>
         <Form.Label>名称</Form.Label>
         <Form.Select value={value} onChange={onChange}>
+          <option>名称を選択</option>
           {categories.map(value => (
             <option value={value.Id}>{value.Name}</option>
           ))}

@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../client";
 import OpCmd from "./OpCmd";
-import CategorySelect from './CategoryDetails/CategorySelect';
+import ItemDetail from "./ItemDetail";
 
 function ItemEdit() {
   const { id } = useParams();
@@ -68,23 +68,23 @@ function ItemEdit() {
 
   return (
     <Form>
-      <CategorySelect value={category} onChange={event => setCategory(parseInt(event.target.value))} />
-      <Form.Group className="mb-3" controlId="NameIt">
-        <Form.Label>商品名</Form.Label>
-        <Form.Control type="text" value={item} onChange={evt => setItem(evt.target.value)} />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="DateBought">
-        <Form.Label>購入日</Form.Label>
-        <Form.Control type="date" value={dateBought} onChange={evt => setDateBought(`${evt.target.valueAsDate.toISOString().replace(/T.*$/i, '')}`)} />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="Expire">
-        <Form.Label>賞味期限</Form.Label>
-        <Form.Control type="date" value={life} onChange={evt => setLife(`${evt.target.valueAsDate.toISOString().replace(/T.*$/i, '')}`)} />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="Notes">
-        <Form.Label>備考</Form.Label>
-        <Form.Control as="textarea" rows={3} value={notes} onChange={evt => setNotes(evt.target.value)} />
-      </Form.Group>
+      <ItemDetail
+        category={category}
+        categoryId="Category"
+        onCategoryChange={event => setCategory(parseInt(event.target.value))}
+        name={item}
+        nameId="Name"
+        onNameChange={event => setItem(event.target.value)}
+        dateB={dateBought}
+        dateBId="DateBought"
+        onDateBChange={event => setDateBought(event.target.value)}
+        dateE={life}
+        dateEId="Life"
+        onDateEChange={event => setLife(event.target.value)}
+        notes={notes}
+        notesId="Notes"
+        onNotesChange={event => setNotes(event.target.value)}
+      />
       <OpCmd
         identity={id}
         table="Items"
