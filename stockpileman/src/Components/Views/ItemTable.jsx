@@ -1,6 +1,10 @@
 import { Table } from "react-bootstrap";
 import ItemRow from "./ItemRow";
 
+/**
+ * @param {Object} props The properties.
+ * @param {Array<Item>} props.items The items which are to be displayed.
+ */
 function ItemTable(props) {
   /**
    * @typedef Item
