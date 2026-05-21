@@ -19,7 +19,7 @@ function App() {
           .then(profile => {
             if (liff.isLoggedIn()) {
               if (!import.meta.env.VITE_USERS.split(',').includes(profile.displayName)) {
-                location.replace('about:blank');
+                location.replace('about://blank');
               }
             } else {
               liff.login();
