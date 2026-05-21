@@ -26,11 +26,13 @@ function ItemTable(props) {
   return (
     <Table striped hover>
       <thead>
-        <th>登録 ID</th>
-        <th>名称</th>
-        <th>商品名</th>
-        <th>賞味期限</th>
-        <th>操作</th>
+        <tr>
+          <th>登録 ID</th>
+          <th>名称</th>
+          <th>商品名</th>
+          <th>賞味期限</th>
+          <th>操作</th>
+        </tr>
       </thead>
       <tbody>
         {items.map(item => (
