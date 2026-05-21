@@ -12,7 +12,19 @@ import FilteredResult from './Components/FilteredResult.jsx';
 function App() {
   liff.init({
     liffId: import.meta.env.VITE_LIFF_ID,
-  });
+  })
+    .then(() => {
+      if (liff.isLoggedIn()) {
+        liff.getProfile()
+          .then(profile => {
+            if (!import.meta.env.VITE_USERS.split(',').includes(profile.displayName)) {
+              location.replace('about:blank');
+            } else {
+              liff.login();
+            }
+          });
+      }
+    });
 
   return (
     <BrowserRouter>
