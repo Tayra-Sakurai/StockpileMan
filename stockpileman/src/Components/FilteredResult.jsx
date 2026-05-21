@@ -62,11 +62,13 @@ function FilteredResult() {
               continue;
             }
           }
-          if (d1 && d2) {
-            const start = new Date(d1);
-            const end = new Date(d2);
-            const expireDate = new Date(datumn.ExpireDate);
-            if ((start > expireDate) || (end < expireDate)) {
+          if (d1) {
+            if (new Date(d1) > new Date(datumn.ExpireDate)) {
+              continue;
+            }
+          }
+          if (d2) {
+            if (new Date(d2) < new Date(datumn.ExpireDate)) {
               continue;
             }
           }

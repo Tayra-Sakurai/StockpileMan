@@ -37,8 +37,8 @@ function FilterForm() {
     setSearchParam({
       category: formData.get('category'),
       q: formData.get('q'),
-      d1: formData.get('d1'),
-      d2: formData.get('d2'),
+      d1: formData.get('d1') ?? '',
+      d2: formData.get('d2') ?? '',
     });
   };
 
