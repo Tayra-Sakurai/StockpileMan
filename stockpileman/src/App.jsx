@@ -17,8 +17,10 @@ function App() {
       if (liff.isLoggedIn()) {
         liff.getProfile()
           .then(profile => {
-            if (!import.meta.env.VITE_USERS.split(',').includes(profile.displayName)) {
-              location.replace('about:blank');
+            if (liff.isLoggedIn()) {
+              if (!import.meta.env.VITE_USERS.split(',').includes(profile.displayName)) {
+                location.replace('about:blank');
+              }
             } else {
               liff.login();
             }
