@@ -47,7 +47,11 @@ function FilterForm() {
       <Form action={submitData}>
         <Form.Group className="mb-3" controlId="category">
           <Form.Label>名称</Form.Label>
-          <Form.Select name="category" value={category} onChange={event => setCategory(event.target.value)}>
+          <Form.Select
+            name="category"
+            value={category}
+            onChange={event => setCategory(event.target.value)}
+          >
             {categories.map(value => (
               <option value={value}>{value}</option>
             ))}
