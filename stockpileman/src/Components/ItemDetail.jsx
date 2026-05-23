@@ -65,10 +65,6 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
             type="date"
             isInvalid={!!errors[dateEId]}
             {...register(dateEId, {
-              min: {
-                value: currentDate,
-                message: '本日以降の日付を入力してください．',
-              },
               required: '賞味期限を入力してください．',
             })}
           />
