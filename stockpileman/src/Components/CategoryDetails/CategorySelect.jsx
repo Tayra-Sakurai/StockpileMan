@@ -10,6 +10,7 @@ import { supabase } from "../../client";
  * @property {object=} ref The additional parameters.
  * @property {string} name The element's name.
  * @property {import("react").FocusEventHandler<HTMLSelectElement>} onBlur The blur event.
+ * @property {boolean=} isInvalid Whether the select fulfills the conditions.
  */
 
 /**
@@ -27,7 +28,7 @@ import { supabase } from "../../client";
 /**
  * @param {ParamType} params The props.
  */
-function CategorySelect({ controlId, value, onChange, ref = {}, name, onBlur }) {
+function CategorySelect({ controlId, value, onChange, ref = {}, name, onBlur, isInvalid }) {
   /**
    * @type {[
    *   Array<Category>,
@@ -94,6 +95,7 @@ function CategorySelect({ controlId, value, onChange, ref = {}, name, onBlur }) 
           ref={ref}
           name={name}
           onBlur={onBlur}
+          isInvalid={isInvalid}
         >
           <option>名称を選択</option>
           {categories.map(value => (

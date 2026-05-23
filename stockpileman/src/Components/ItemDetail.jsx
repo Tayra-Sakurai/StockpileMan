@@ -18,6 +18,7 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
     <>
       <CategorySelect
         controlId={categoryId}
+        isInvalid={!!errors[categoryId]}
         name={categoryId}
         {...register(categoryId, {
           required: '名称を選択してください．',
@@ -27,6 +28,7 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
         <Form.Label>商品名</Form.Label>
         <Form.Control
           name={nameId}
+          isInvalid={!!errors[nameId]}
           {...register(nameId, {
             required: '商品名を入力してください．',
             maxLength: {
@@ -44,6 +46,7 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
           <Form.Label>購入日</Form.Label>
           <Form.Control
             type="date"
+            isInvalid={!!errors[dateBId]}
             {...register(dateBId, {
               required: '購入日を設定してください．',
               max: {
@@ -60,6 +63,7 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
           <Form.Label>賞味期限</Form.Label>
           <Form.Control
             type="date"
+            isInvalid={!!errors[dateEId]}
             {...register(dateEId, {
               min: {
                 value: currentDate,
