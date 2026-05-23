@@ -32,7 +32,7 @@ function ItemAdd() {
         ExpireDate: new Date(data.life).toISOString(),
         Notes: data.notes,
       });
-    navigate('/Views');
+    navigate('/View');
   };
 
   return (

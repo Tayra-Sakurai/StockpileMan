@@ -2,7 +2,7 @@ import Form from "react-bootstrap/Form";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../client";
 import OpCmd from "./OpCmd";
-import ItemDetail from "./ItemDetail";
+import ItemDetail from "./ItemDetail.jsx";
 import { useForm } from "react-hook-form";
 
 function ItemEdit() {
