@@ -26,6 +26,7 @@ function ItemTable(props) {
    * @type {Array<Item>}
    */
   const items = props.items;
+  items.sort((a, b) => new Date(a.ExpireDate).getTime() - new Date(b.ExpireDate).getTime());
 
   return (
     <Table striped hover>
