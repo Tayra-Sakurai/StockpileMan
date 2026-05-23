@@ -16,7 +16,30 @@ function ItemEdit() {
     formState: {
       errors
     }
-  } = useForm();
+  } = useForm({
+    async defaultValues() {
+      const {
+        data: [entry],
+        error,
+      } = await supabase
+        .from('Items')
+        .select()
+        .eq('Id', itid);
+      if (!entry) {
+        console.error(error);
+        return;
+      }
+      else {
+        return {
+          Category: entry.CategoryId.toString(),
+          Name: entry.Name,
+          DateBought: new Date(entry.BoughtAt).toISOString().replace(/T.*$/i, ''),
+          Life: new Date(entry.ExpireDate).toISOString().replace(/T.*$/i, ''),
+          Notes: entry.Notes,
+        };
+      }
+    },
+  });
 
   /**
    * @param {import("react-hook-form").FieldValues} data The data.
@@ -45,7 +68,6 @@ function ItemEdit() {
         notesId="Notes"
         register={register}
         errors={errors}
-        id={itid}
       />
       <OpCmd
         identity={id}

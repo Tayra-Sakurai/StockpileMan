@@ -1,8 +1,6 @@
 import { Col, Form, Row } from "react-bootstrap";
 import CategorySelect from "./CategoryDetails/CategorySelect";
-import { useEffect, useState } from "react";
 import dateInputString from '../Utilities/DateInputString';
-import { supabase } from "../client";
 
 /**
  * @param {object} param0 The parameters given as attributes.
@@ -11,62 +9,25 @@ import { supabase } from "../client";
  * @param {string} param0.dateBId The ID for the input for the date when you bought the item.
  * @param {string} param0.dateEId The identifier of the date input of the expiring date.
  * @param {string} param0.notesId The identifier for the note input.
- * @param {(number | undefined)=} param0.id The id of the editing entry.
  * @param {import("react-hook-form").UseFormRegister<import("react-hook-form").FieldValues>} param0.register The registration function for forms.
  * @param {import("react-hook-form").FieldErrors<import("react-hook-form").FieldValues>} param0.errors The errors of the form.
  */
-function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, errors, id = undefined }) {
-  const [category, setCategory] = useState();
-  const [name, setName] = useState('');
+function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, errors }) {
   const currentDate = dateInputString(new Date());
-  const [boughtOn, setBoughtOn] = useState(currentDate);
-  const [expireOn, setExpireOn] = useState(currentDate);
-  const [notes, setNotes] = useState('');
-  useEffect(
-    () => {
-      const setup = async () => {
-        if (typeof id == 'number') {
-          const {
-            data: [entry],
-            error,
-          } = await supabase
-            .from('Items')
-            .select()
-            .eq('Id', id);
-          if (!entry)
-            console.error(error);
-          else {
-            setCategory(entry.CategoryId.toString());
-            setName(entry.Name);
-            setBoughtOn(entry.BoughtAt.replace(/T.*$/i, ''));
-            setExpireOn(entry.ExpireDate.replace(/T.*$/i, ''));
-            setNotes(entry.Notes);
-          }
-        }
-      };
-      setup();
-    }
-  );
-
-
   return (
     <>
       <CategorySelect
-        value={category}
-        onChange={event => setCategory(event.target.value)}
         controlId={categoryId}
         name={categoryId}
-        ref={register(categoryId, {
+        {...register(categoryId, {
           required: '名称を選択してください．',
         })}
       />
       <Form.Group className="mb-3" controlId={nameId}>
         <Form.Label>商品名</Form.Label>
         <Form.Control
-          value={name}
-          onChange={event => setName(event.target.value)}
           name={nameId}
-          ref={register(nameId, {
+          {...register(nameId, {
             required: '商品名を入力してください．',
             maxLength: {
               value: 50,
@@ -83,10 +44,7 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
           <Form.Label>購入日</Form.Label>
           <Form.Control
             type="date"
-            value={boughtOn}
-            onChange={event => setBoughtOn(event.target.value)}
-            name={dateBId}
-            ref={register(dateBId, {
+            {...register(dateBId, {
               required: '購入日を設定してください．',
               max: {
                 value: currentDate,
@@ -102,10 +60,7 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
           <Form.Label>賞味期限</Form.Label>
           <Form.Control
             type="date"
-            value={expireOn}
-            onChange={event => setExpireOn(event.target.value)}
-            name={dateEId}
-            ref={register(dateEId, {
+            {...register(dateEId, {
               min: {
                 value: currentDate,
                 message: '本日以降の日付を入力してください．',
@@ -123,9 +78,7 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
         <Form.Control
           as="textarea"
           rows="3"
-          value={notes}
-          onChange={event => setNotes(event.target.value)}
-          name={notesId}
+          {...register(notesId)}
         />
       </Form.Group>
     </>

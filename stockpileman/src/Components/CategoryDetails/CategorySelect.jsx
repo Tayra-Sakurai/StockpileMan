@@ -8,6 +8,8 @@ import { supabase } from "../../client";
  * @property {number} value The displaying ID of the selected category.
  * @property {import("react").ChangeEventHandler<HTMLSelectElement, HTMLSelectElement>} onChange Changed event handler.
  * @property {object=} ref The additional parameters.
+ * @property {string} name The element's name.
+ * @property {import("react").FocusEventHandler<HTMLSelectElement>} onBlur The blur event.
  */
 
 /**
@@ -25,7 +27,7 @@ import { supabase } from "../../client";
 /**
  * @param {ParamType} params The props.
  */
-function CategorySelect({ controlId, value, onChange, ref = {} }) {
+function CategorySelect({ controlId, value, onChange, ref = {}, name, onBlur }) {
   /**
    * @type {[
    *   Array<Category>,
@@ -90,6 +92,8 @@ function CategorySelect({ controlId, value, onChange, ref = {} }) {
           value={value}
           onChange={onChange}
           ref={ref}
+          name={name}
+          onBlur={onBlur}
         >
           <option>名称を選択</option>
           {categories.map(value => (

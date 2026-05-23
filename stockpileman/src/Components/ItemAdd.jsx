@@ -4,6 +4,7 @@ import ItemDetail from './ItemDetail';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../client';
+import dateInputString from '../Utilities/DateInputString';
 
 /**
  * @typedef {import("react-hook-form").FieldValues} SuperFormData
@@ -15,7 +16,16 @@ import { supabase } from '../client';
  */
 
 function ItemAdd() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const currentDate = dateInputString(new Date());
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      category: null,
+      item: '',
+      dateBought: currentDate,
+      life: currentDate,
+      notes: '',
+    },
+  });
   const navigate = useNavigate();
 
   /**
