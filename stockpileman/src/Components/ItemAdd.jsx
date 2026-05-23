@@ -38,7 +38,7 @@ function ItemAdd() {
       .insert({
         CategoryId: parseInt(data.category),
         Name: data.item,
-        BoughtAt: new Date(data.boughtAt).toISOString(),
+        BoughtAt: new Date(data.dateBought).toISOString(),
         ExpireDate: new Date(data.life).toISOString(),
         Notes: data.notes,
       });
