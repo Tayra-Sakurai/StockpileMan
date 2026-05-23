@@ -33,23 +33,19 @@ function OpCmd(props) {
    * @type {string}
    */
   const table = props.table;
-  /**
-   * The callback function of update button.
-   * @type {Update}
-   */
-  const updateCallback = props.updateCallback;
 
   return (
     <>
       <Button
         variant="danger"
+        type="button"
         onClick={async () => await DeleteData(parseInt(id), table)}
       >
         使用
       </Button>
       <Button
         variant="primary"
-        onClick={updateCallback}
+        type="submit"
       >
         更新
       </Button>

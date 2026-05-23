@@ -1,47 +1,55 @@
 import AddCmd from './AddCmd';
-import { useState } from "react";
 import { Form } from "react-bootstrap";
 import ItemDetail from './ItemDetail';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '../client';
+
+/**
+ * @typedef {import("react-hook-form").FieldValues} SuperFormData
+ * @property {string} category The category number.
+ * @property {string} item The item name.
+ * @property {string} dateBought The date when the item was bought.
+ * @property {string} life The expiring date.
+ * @property {string} notes The notes.
+ */
 
 function ItemAdd() {
-  const [category, setCategory] = useState(1);
-  const [item, setItem] = useState('');
-  const [dateBought, setDateBought] = useState(new Date().toISOString().replace(/T.*$/, ''));
-  const [life, setLife] = useState(new Date().toISOString().replace(/T.*$/, ''));
-  const [notes, setNotes] = useState('');
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const navigate = useNavigate();
+
+  /**
+   * The form submission handler.
+   * @param {SuperFormData} data The form data.
+   */
+  const addItem = async data => {
+    await supabase
+      .from('Items')
+      .insert({
+        CategoryId: parseInt(data.category),
+        Name: data.item,
+        BoughtAt: new Date(data.boughtAt).toISOString(),
+        ExpireDate: new Date(data.life).toISOString(),
+        Notes: data.notes,
+      });
+    navigate('/Views');
+  };
 
   return (
     <>
       <h1>項目を追加する</h1>
       <p>以下のフォームから項目を追加します．</p>
-      <Form>
+      <Form onSubmit={handleSubmit(addItem)}>
         <ItemDetail
-          category={category}
-          onCategoryChange={event => setCategory(parseInt(event.target.value ?? '1'))}
           categoryId="category"
-          name={item}
           nameId="item"
-          onNameChange={event => setItem(event.target.value)}
-          dateB={dateBought}
           dateBId="dateBought"
-          onDateBChange={evt => setDateBought(evt.target.value)}
-          dateE={life}
           dateEId="life"
-          onDateEChange={evt => setLife(evt.target.value)}
-          notes={notes}
           notesId="notes"
-          onNotesChange={evt => setNotes(evt.target.value)}
+          register={register}
+          errors={errors}
         />
-        <AddCmd
-          data={{
-            Name: item,
-            CategoryId: category,
-            BoughtAt: new Date(dateBought).toISOString(),
-            ExpireDate: new Date(life).toISOString(),
-            Notes: notes,
-          }}
-          table="Items"
-        />
+        <AddCmd />
       </Form>
     </>
   );
