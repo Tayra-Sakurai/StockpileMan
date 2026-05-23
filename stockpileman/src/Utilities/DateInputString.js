@@ -14,7 +14,7 @@ function dateInputString(date) {
    * The month.
    * @type {string}
    */
-  const month = date.getMonth().toString();
+  const month = (date.getMonth() + 1).toString();
   /**
    * The date.
    * @type {string}
