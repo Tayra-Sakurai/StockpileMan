@@ -65,7 +65,6 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
         <Form.Control
           value={name}
           onChange={event => setName(event.target.value)}
-          isInvalid={!!errors[nameId]}
           name={nameId}
           ref={register(nameId, {
             required: '商品名を入力してください．',
@@ -87,7 +86,6 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
             value={boughtOn}
             onChange={event => setBoughtOn(event.target.value)}
             name={dateBId}
-            isInvalid={!!errors[dateBId]}
             ref={register(dateBId, {
               required: '購入日を設定してください．',
               max: {
@@ -107,7 +105,6 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
             value={expireOn}
             onChange={event => setExpireOn(event.target.value)}
             name={dateEId}
-            isInvalid={!!errors[dateEId]}
             ref={register(dateEId, {
               min: {
                 value: currentDate,
