@@ -92,7 +92,7 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
             })}
           />
           <Form.Control.Feedback type="invalid">
-            {errors[dateBId].message}
+            {errors[dateBId]?.message}
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} controlId={dateEId}>
