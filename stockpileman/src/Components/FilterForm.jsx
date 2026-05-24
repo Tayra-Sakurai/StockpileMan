@@ -23,6 +23,7 @@ function FilterForm() {
           console.error(error);
         } else {
           console.info(data);
+          data.sort((a, b) => a.Name.localeCompare(b.Name));
           setCategories(data.map(value => value.Name));
         }
       };

@@ -79,6 +79,7 @@ function CategorySelect({ controlId, value, onChange, ref = {}, name, onBlur, is
         const { data } = await supabase
           .from('Categories')
           .select();
+        data.sort((a, b) => a.Name.localeCompare(b.Name));
         setCategories(data ?? []);
       };
       setup();
