@@ -66,7 +66,7 @@ function FilterForm({ searchParam, setSearchParam }) {
             value={category}
             onChange={event => setCategory(event.target.value)}
           >
-            <option>名称を選択</option>
+            <option value="">名称を選択</option>
             {categories.map(value => (
               <option value={value}>{value}</option>
             ))}
