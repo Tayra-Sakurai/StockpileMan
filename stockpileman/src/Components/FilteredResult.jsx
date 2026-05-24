@@ -5,7 +5,7 @@ import { supabase } from "../client";
 import ItemTable from './Views/ItemTable';
 
 function FilteredResult() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [items, setItems] = useState([]);
 
   useEffect(
@@ -90,7 +90,10 @@ function FilteredResult() {
     <>
       <h1>検索</h1>
       <h2>検索フォーム</h2>
-      <FilterForm />
+      <FilterForm
+        searchParam={searchParams}
+        setSearchParam={setSearchParams}
+      />
       <h2>検索結果</h2>
       <ItemTable items={items} />
     </>

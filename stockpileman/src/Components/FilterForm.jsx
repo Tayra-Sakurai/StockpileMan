@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { useSearchParams } from "react-router-dom";
 import { supabase } from '../client';
 
-function FilterForm() {
-  const [searchParam, setSearchParam] = useSearchParams();
+/**
+ * @param {object} param0 
+ * @param {URLSearchParams} param0.searchParam The search parameters.
+ * @param {import("react-router-dom").SetURLSearchParams} param0.setSearchParam The search parameter setting function.
+ */
+function FilterForm({ searchParam, setSearchParam }) {
   const [category, setCategory] = useState(searchParam.get('category'));
   const [phrase, setPhrase] = useState(searchParam.get('q'));
   const [categories, setCategories] = useState([]);
@@ -51,7 +54,7 @@ function FilterForm() {
       setPhrase(searchParam.get('q'));
     };
     setup();
-  }, [searchParam]);
+  });
 
   return (
     <>
