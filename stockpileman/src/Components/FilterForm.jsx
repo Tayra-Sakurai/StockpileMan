@@ -54,7 +54,7 @@ function FilterForm({ searchParam, setSearchParam }) {
       setPhrase(searchParam.get('q'));
     };
     setup();
-  });
+  }, [searchParam]);
 
   return (
     <>
