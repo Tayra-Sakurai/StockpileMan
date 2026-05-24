@@ -38,7 +38,6 @@ function FilterForm({ searchParam, setSearchParam }) {
    * @param {FormData} formData The form data submitted.
    */
   const submitData = formData => {
-    console.log(formData.get('d2'));
     setSearchParam({
       category: formData.get('category'),
       q: formData.get('q'),
@@ -55,7 +54,7 @@ function FilterForm({ searchParam, setSearchParam }) {
       setPhrase(searchParam.get('q'));
     };
     setup();
-  }, [searchParam]);
+  });
 
   return (
     <>
@@ -80,11 +79,11 @@ function FilterForm({ searchParam, setSearchParam }) {
         <Row className="mb-3">
           <Form.Group as={Col} controlId="d1">
             <Form.Label>期間（開始日・賞味期限）</Form.Label>
-            <Form.Control value={duration1} onChange={event => setDuration1(event.target.value)} type="date" />
+            <Form.Control name="d1" value={duration1} onChange={event => setDuration1(event.target.value)} type="date" />
           </Form.Group>
           <Form.Group as={Col} controlId="d2">
             <Form.Label>期間（終了日・賞味期限）</Form.Label>
-            <Form.Control type="date" value={duration2} onChange={event => setDuration2(event.target.value)} />
+            <Form.Control name="d2" type="date" value={duration2} onChange={event => setDuration2(event.target.value)} />
           </Form.Group>
         </Row>
         <Button type="submit" variant="primary">検索</Button>
