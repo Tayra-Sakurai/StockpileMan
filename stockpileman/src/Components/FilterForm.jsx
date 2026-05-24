@@ -38,6 +38,7 @@ function FilterForm({ searchParam, setSearchParam }) {
    * @param {FormData} formData The form data submitted.
    */
   const submitData = formData => {
+    console.log(formData.get('d2'));
     setSearchParam({
       category: formData.get('category'),
       q: formData.get('q'),
