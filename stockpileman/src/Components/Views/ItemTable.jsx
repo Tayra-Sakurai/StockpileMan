@@ -26,7 +26,7 @@ function ItemTable(props) {
    * @type {Array<Item>}
    */
   const items = props.items;
-  items.sort((a, b) => new Date(a.ExpireDate).getTime() - new Date(b.ExpireDate).getTime());
+  items.sort((a, b) => new Date(a.ExpireDate).getTime() - new Date(b.ExpireDate).getTime() || a.Name.localeCompare(b.Name) || a.Categories.Name.localeCompare(b.Categories.Name));
 
   return (
     <Table striped hover>
