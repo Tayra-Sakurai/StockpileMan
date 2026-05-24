@@ -52,8 +52,8 @@ function CategoryRow({ catId }) {
        */
       const { data: result, error: err } = await supabase
         .from('Items')
-        .eq('CategoryId', catId)
-        .select('CategoryId');
+        .select('CategoryId')
+        .eq('CategoryId', catId);
       if (!result) {
         console.error(err);
         count = 0;
