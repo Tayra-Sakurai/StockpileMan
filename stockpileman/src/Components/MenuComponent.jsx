@@ -12,7 +12,8 @@ function MenuComponent() {
           <Nav className="me-auto">
             <Nav.Link href="/">在庫検索</Nav.Link>
             <Nav.Link href="/Add">新規登録</Nav.Link>
-            <Nav.Link href="/View">在庫管理</Nav.Link>
+            <Nav.Link href="/View/Items">在庫管理</Nav.Link>
+            <Nav.Link href="/View/Categories">名称ごとの在庫</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -52,10 +52,7 @@ function ItemView() {
   );
 
   return (
-    <>
-      <h1>在庫一覧</h1>
-      <ItemTable items={items} />
-    </>
+    <ItemTable items={items} />
   );
 }
 

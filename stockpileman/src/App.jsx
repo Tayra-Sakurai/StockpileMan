@@ -8,6 +8,8 @@ import ItemAdd from './Components/ItemAdd.jsx';
 import ItemView from './Components/Views/ItemView.jsx';
 import liff from '@line/liff';
 import FilteredResult from './Components/FilteredResult.jsx';
+import ViewBase from './Components/Views/ViewBase.jsx';
+import CategoriesView from './Components/CategoryDetails/CategoriesView.jsx';
 
 function App() {
   liff.init({
@@ -37,7 +39,10 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<FilteredResult />} />
-            <Route path="/View" element={<ItemView />} />
+            <Route path="/View" element={<ViewBase />}>
+              <Route path="Items" element={<ItemView />} />
+              <Route path="Categories" element={<CategoriesView />} />
+            </Route>
             <Route path="/Add" element={<ItemAdd />} />
             <Route path="/Edit/:id" element={<ItemEdit />} />
           </Routes>
