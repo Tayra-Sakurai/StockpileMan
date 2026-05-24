@@ -68,6 +68,12 @@ function FilteredResult() {
             }
           }
           if (d2) {
+            console.group(['Data']);
+            console.info('d2=');
+            console.info(new Date(d2));
+            console.info('ExpireDate=');
+            console.info(new Date(datumn.ExpireDate));
+            console.groupEnd();
             if (new Date(d2) < new Date(datumn.ExpireDate)) {
               continue;
             }

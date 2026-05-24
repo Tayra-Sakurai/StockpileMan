@@ -43,6 +43,16 @@ function FilterForm() {
     });
   };
 
+  useEffect(() => {
+    const setup = async () => {
+      setCategory(searchParam.get('category'));
+      setDuration1(searchParam.get('d1'));
+      setDuration2(searchParam.get('d2'));
+      setPhrase(searchParam.get('q'));
+    };
+    setup();
+  }, [searchParam]);
+
   return (
     <>
       <Form action={submitData}>
@@ -53,6 +63,7 @@ function FilterForm() {
             value={category}
             onChange={event => setCategory(event.target.value)}
           >
+            <option>名称を選択</option>
             {categories.map(value => (
               <option value={value}>{value}</option>
             ))}
