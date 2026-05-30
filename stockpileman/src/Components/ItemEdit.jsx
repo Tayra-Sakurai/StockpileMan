@@ -27,7 +27,8 @@ function ItemEdit() {
     handleSubmit,
     formState: {
       errors
-    }
+    },
+    setValue,
   } = useForm({
     async defaultValues() {
       const {
@@ -80,6 +81,7 @@ function ItemEdit() {
         notesId="Notes"
         register={register}
         errors={errors}
+        setValue={setValue}
       />
       <OpCmd
         identity={id}

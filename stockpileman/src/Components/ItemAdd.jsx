@@ -29,7 +29,7 @@ import dateInputString from '../Utilities/DateInputString';
 
 function ItemAdd() {
   const currentDate = dateInputString(new Date());
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm({
     defaultValues: {
       category: null,
       item: '',
@@ -70,6 +70,7 @@ function ItemAdd() {
           notesId="notes"
           register={register}
           errors={errors}
+          setValue={setValue}
         />
         <AddCmd />
       </Form>

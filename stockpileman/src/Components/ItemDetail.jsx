@@ -23,8 +23,9 @@ import dateInputString from '../Utilities/DateInputString';
  * @param {string} param0.notesId The identifier for the note input.
  * @param {import("react-hook-form").UseFormRegister<import("react-hook-form").FieldValues>} param0.register The registration function for forms.
  * @param {import("react-hook-form").FieldErrors<import("react-hook-form").FieldValues>} param0.errors The errors of the form.
+ * @param {import("react-hook-form").UseFormSetValue<import("react-hook-form").FieldValues>} param0.setValue The value setter function provided by React Hook Form.
  */
-function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, errors }) {
+function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, errors, setValue }) {
   const currentDate = dateInputString(new Date());
   return (
     <>
@@ -34,6 +35,7 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
         {...register(categoryId, {
           required: '名称を選択してください．',
         })}
+        setValue={setValue}
       />
       <Form.Group className="mb-3" controlId={nameId}>
         <Form.Label>商品名</Form.Label>

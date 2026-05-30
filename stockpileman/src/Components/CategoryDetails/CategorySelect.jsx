@@ -24,6 +24,7 @@ import { supabase } from "../../client";
  * @property {import("react").FocusEventHandler<HTMLSelectElement>} onBlur The blur event.
  * @property {boolean=} isInvalid Whether the select fulfills the conditions.
  * @property {boolean=} required Whether the select is required.
+ * @property {import("react-hook-form").UseFormSetValue<import("react-hook-form").FieldValues>} setValue The value setter.
  */
 
 /**
@@ -33,15 +34,13 @@ import { supabase } from "../../client";
  */
 
 /**
- * @typedef {Object} CategoryResponse
- * @property {?Array<Category>} data
- * @property {?Error} error
+ * @typedef {import("@supabase/supabase-js").PostgrestResponse<Category>} CategoryResponse
  */
 
 /**
  * @param {ParamType} params The props.
  */
-function CategorySelect({ controlId, value, onChange, ref = {}, name, onBlur, isInvalid, required = false }) {
+function CategorySelect({ controlId, value, onChange, ref = {}, name, onBlur, isInvalid, required = false, setValue }) {
   /**
    * @type {[
    *   Array<Category>,
@@ -68,9 +67,13 @@ function CategorySelect({ controlId, value, onChange, ref = {}, name, onBlur, is
     } else if (data.length > 0) {
       return;
     } else {
-      await supabase
+      /**
+       * @type {CategoryResponse}
+       */
+      const { data: [d] } = await supabase
         .from('Categories')
-        .insert({ Name: newCategory });
+        .insert({ Name: newCategory })
+        .select();
       /**
        * @type {CategoryResponse}
        */
@@ -80,6 +83,7 @@ function CategorySelect({ controlId, value, onChange, ref = {}, name, onBlur, is
         .from('Categories')
         .select();
       setCategories(arr ?? []);
+      if (d) setValue(name, d.Id);
     }
   };
 
