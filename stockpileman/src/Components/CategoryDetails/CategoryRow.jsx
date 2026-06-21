@@ -12,23 +12,19 @@
  */
 
 /**
- * @typedef {object} Item
- * @property {number} CategoryId The ID of the related category.
+ * @typedef {object} Items
+ * @property {number} count The number of the related category.
  */
 
 /**
  * @typedef {object} Category
  * @property {number} Id The category's ID.
  * @property {string} Name The name of the category.
- * @property {Array<Item>} Items The related Items.
+ * @property {Items} Items The related Items.
  */
 
 /**
  * @typedef {import("@supabase/supabase-js").PostgrestResponse<Category>} CategoryResponse
- */
-
-/**
- * @typedef {import("@supabase/supabase-js").PostgrestResponse<Item>} ItemResponse
  */
 
 /**
@@ -40,7 +36,7 @@ function CategoryRow({ category }) {
     <tr>
       <td>{category.Id}</td>
       <td>{category.Name}</td>
-      <td>{category.Items.length}</td>
+      <td>{category.Items.count}</td>
     </tr>
   )
 }

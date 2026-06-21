@@ -45,21 +45,21 @@ function CategoriesView({ maxItems = null }) {
        * @type {import("@supabase/supabase-js").PostgrestResponse<{
        *   Id: number,
        *   Name: string,
-       *   Items: Array<{
-       *     CategoryId: number,
-       *   }>,
+       *   Items: {
+       *     count: number,
+       *   },
        * }>}
        */
       const { data, error } = await supabase
         .from('Categories')
-        .select('*, Items!inner(CategoryId)');
+        .select('*, Items(count)');
       if (!data) {
         console.error(error.message);
         return;
       }
       if (maxItems) {
         const filteredItems = data
-          .filter(v => v.Items.length <= maxItems);
+          .filter(v => v.Items.count <= maxItems);
         setCategories(filteredItems);
         return;
       }

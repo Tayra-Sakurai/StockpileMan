@@ -15,15 +15,15 @@ import { Table } from "react-bootstrap";
 import CategoryRow from "./CategoryRow";
 
 /**
- * @typedef {Object} Item
- * @property {number} CategoryId The related category's ID.
+ * @typedef {Object} Items
+ * @property {number} count The number of related items.
  */
 
 /**
  * @typedef {object} Category
  * @property {number} Id The identifier.
  * @property {string} Name The name.
- * @property {Array<Item>} Items The related items.
+ * @property {Items} Items The related items.
  */
 
 /**
@@ -31,7 +31,7 @@ import CategoryRow from "./CategoryRow";
  * @param {Array<Category>} props.categories The categories to be displayed.
  */
 function CategoriesTable({ categories }) {
-  categories.sort((a, b) => a.Items.length - b.Items.length || a.Name.localeCompare(b.Name) || a.Id - b.Id);
+  categories.sort((a, b) => a.Items.count - b.Items.count || a.Name.localeCompare(b.Name) || a.Id - b.Id);
   return (
     <Table striped hover>
       <thead>
