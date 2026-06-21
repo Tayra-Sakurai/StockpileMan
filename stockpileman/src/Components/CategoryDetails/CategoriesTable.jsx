@@ -31,7 +31,7 @@ import CategoryRow from "./CategoryRow";
  * @param {Array<Category>} props.categories The categories to be displayed.
  */
 function CategoriesTable({ categories }) {
-  categories.sort((a, b) => a.Items.count - b.Items.count || a.Name.localeCompare(b.Name) || a.Id - b.Id);
+  categories.sort((a, b) => a.Items[0].count - b.Items[0].count || a.Name.localeCompare(b.Name) || a.Id - b.Id);
   return (
     <Table striped hover>
       <thead>
