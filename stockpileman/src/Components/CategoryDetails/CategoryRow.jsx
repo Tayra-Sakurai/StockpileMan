@@ -38,7 +38,7 @@ function CategoryRow({ category }) {
       <td>{category.Name}</td>
       <td>{category.Items[0].count}</td>
     </tr>
-  )
+  );
 }
 
 export default CategoryRow;
