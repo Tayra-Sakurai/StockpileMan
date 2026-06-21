@@ -10,18 +10,17 @@
  * 
  * You should have received a copy of the GNU Affero General Public License along with StockpileMan. If not, see <https://www.gnu.org/licenses/>.
  */
-import { useEffect, useState } from "react";
-import { supabase } from "../../client";
+
+/**
+ * @typedef {object} Item
+ * @property {number} CategoryId The ID of the related category.
+ */
 
 /**
  * @typedef {object} Category
  * @property {number} Id The category's ID.
  * @property {string} Name The name of the category.
- */
-
-/**
- * @typedef {object} Item
- * @property {number} CategoryId The ID of the related category.
+ * @property {Array<Item>} Items The related Items.
  */
 
 /**
@@ -34,57 +33,16 @@ import { supabase } from "../../client";
 
 /**
  * @param {object} props The props.
- * @param {number} props.catId The category id.
+ * @param {Category} props.category The category.
  */
-function CategoryRow({ catId }) {
-  const [catName, setCatName] = useState('');
-  const [items, setItems] = useState(0);
-
-  useEffect(() => {
-    const setup = async () => {
-      /**
-       * The response.
-       * @type {CategoryResponse}
-       */
-      const { data: [entry], error } = await supabase
-        .from('Categories')
-        .select()
-        .eq('Id', catId);
-      if (!entry) {
-        console.error(error);
-        return;
-      }
-      /**
-       * @type {number}
-       */
-      let count;
-      /**
-       * The item counting response.
-       * @type {ItemResponse}
-       */
-      const { data: result, error: err } = await supabase
-        .from('Items')
-        .select('CategoryId')
-        .eq('CategoryId', catId);
-      if (!result) {
-        console.error(err);
-        count = 0;
-      } else {
-        count = result.length;
-      }
-      setCatName(entry.Name);
-      setItems(count);
-    };
-    setup();
-  });
-
+function CategoryRow({ category }) {
   return (
     <tr>
-      <td>{catId}</td>
-      <td>{catName}</td>
-      <td>{items}</td>
+      <td>{category.Id}</td>
+      <td>{category.Name}</td>
+      <td>{category.Items.length}</td>
     </tr>
-  );
+  )
 }
 
 export default CategoryRow;

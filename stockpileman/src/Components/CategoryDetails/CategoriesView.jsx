@@ -14,16 +14,26 @@ import { useEffect, useState } from "react";
 import CategoriesTable from "./CategoriesTable";
 import { supabase } from "../../client";
 
-function CategoriesView() {
+/**
+ * @param {object} props
+ * @param {number=} props.maxItems The maximum number of items to filter.
+ */
+function CategoriesView({ maxItems = null }) {
   /**
    * @type {[
    *   Array<{
    *     Id: number,
    *     Name: string,
+   *     Items: Array<{
+   *       CategoryId: number,
+   *     }>,
    *   }>,
    *   import("react").Dispatch<import("react").SetStateAction<Array<{
    *     Id: number,
    *     Name: string,
+   *     Items: Array<{
+   *       CategoryId: number,
+   *     }>,
    *   }>>
    * ]}
    */
@@ -35,13 +45,22 @@ function CategoriesView() {
        * @type {import("@supabase/supabase-js").PostgrestResponse<{
        *   Id: number,
        *   Name: string,
+       *   Items: Array<{
+       *     CategoryId: number,
+       *   }>,
        * }>}
        */
       const { data, error } = await supabase
         .from('Categories')
-        .select();
+        .select('*, Items!inner(CategoryId)');
       if (!data) {
         console.error(error.message);
+        return;
+      }
+      if (maxItems) {
+        const filteredItems = data
+          .filter(v => v.Items.length <= maxItems);
+        setCategories(filteredItems);
         return;
       }
       setCategories(data);

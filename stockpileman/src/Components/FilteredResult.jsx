@@ -15,6 +15,7 @@ import { useSearchParams } from "react-router-dom";
 import FilterForm from "./FilterForm";
 import { supabase } from "../client";
 import ItemTable from './Views/ItemTable';
+import CategoriesView from "./CategoryDetails/CategoriesView";
 
 function FilteredResult() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -100,6 +101,8 @@ function FilteredResult() {
 
   return (
     <>
+      <h1>在庫が少ない品目</h1>
+      <CategoriesView maxItems={1} />
       <h1>検索</h1>
       <h2>検索フォーム</h2>
       <FilterForm

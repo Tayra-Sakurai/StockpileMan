@@ -15,9 +15,15 @@ import { Table } from "react-bootstrap";
 import CategoryRow from "./CategoryRow";
 
 /**
+ * @typedef {Object} Item
+ * @property {number} CategoryId The related category's ID.
+ */
+
+/**
  * @typedef {object} Category
  * @property {number} Id The identifier.
  * @property {string} Name The name.
+ * @property {Array<Item>} Items The related items.
  */
 
 /**
@@ -25,20 +31,19 @@ import CategoryRow from "./CategoryRow";
  * @param {Array<Category>} props.categories The categories to be displayed.
  */
 function CategoriesTable({ categories }) {
-  categories.sort((a, b) => a.Name.localeCompare(b.Name) || a.Id - b.Id);
-
+  categories.sort((a, b) => a.Items.length - b.Items.length || a.Name.localeCompare(b.Name) || a.Id - b.Id);
   return (
     <Table striped hover>
       <thead>
         <tr>
-          <th>登録番号</th>
+          <th>登録 ID</th>
           <th>名称</th>
-          <th>在庫点数</th>
+          <th>数量</th>
         </tr>
       </thead>
       <tbody>
-        {categories.map(value => (
-          <CategoryRow catId={value.Id} />
+        {categories.map(c => (
+          <CategoryRow category={c} />
         ))}
       </tbody>
     </Table>
