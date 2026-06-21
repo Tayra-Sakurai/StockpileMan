@@ -23,7 +23,7 @@ import CategoryRow from "./CategoryRow";
  * @typedef {object} Category
  * @property {number} Id The identifier.
  * @property {string} Name The name.
- * @property {Items} Items The related items.
+ * @property {Array<Items>} Items The related items.
  */
 
 /**

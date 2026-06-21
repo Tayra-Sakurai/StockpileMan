@@ -25,14 +25,14 @@ function CategoriesView({ maxItems = null }) {
    *     Id: number,
    *     Name: string,
    *     Items: Array<{
-   *       CategoryId: number,
+   *       count: number,
    *     }>,
    *   }>,
    *   import("react").Dispatch<import("react").SetStateAction<Array<{
    *     Id: number,
    *     Name: string,
    *     Items: Array<{
-   *       CategoryId: number,
+   *       count: number,
    *     }>,
    *   }>>
    * ]}
@@ -45,9 +45,9 @@ function CategoriesView({ maxItems = null }) {
        * @type {import("@supabase/supabase-js").PostgrestResponse<{
        *   Id: number,
        *   Name: string,
-       *   Items: {
+       *   Items: Array<{
        *     count: number,
-       *   },
+       *   }>,
        * }>}
        */
       const { data, error } = await supabase
@@ -59,7 +59,7 @@ function CategoriesView({ maxItems = null }) {
       }
       if (maxItems) {
         const filteredItems = data
-          .filter(v => v.Items.count <= maxItems);
+          .filter(v => v.Items[0].count <= maxItems);
         setCategories(filteredItems);
         return;
       }

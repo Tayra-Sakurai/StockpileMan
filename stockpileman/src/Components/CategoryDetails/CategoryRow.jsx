@@ -20,7 +20,7 @@
  * @typedef {object} Category
  * @property {number} Id The category's ID.
  * @property {string} Name The name of the category.
- * @property {Items} Items The related Items.
+ * @property {Array<Items>} Items The related Items.
  */
 
 /**
@@ -36,7 +36,7 @@ function CategoryRow({ category }) {
     <tr>
       <td>{category.Id}</td>
       <td>{category.Name}</td>
-      <td>{category.Items.count}</td>
+      <td>{category.Items[0].count}</td>
     </tr>
   )
 }
