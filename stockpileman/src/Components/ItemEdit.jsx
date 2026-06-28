@@ -68,7 +68,7 @@ function ItemEdit() {
         ExpireDate: new Date(data.Life).toISOString(),
       })
       .eq('Id', itid);
-    navigate('/View/Items');
+    navigate(-1);
   };
 
   return (

@@ -13,6 +13,7 @@
 import ItemTable from './ItemTable';
 import { useEffect, useState } from "react";
 import { supabase } from "../../client";
+import { Link } from 'react-router-dom';
 
 function ItemView() {
   /**
@@ -64,7 +65,10 @@ function ItemView() {
   );
 
   return (
-    <ItemTable items={items} />
+    <>
+      <p><Link to="/Add">新規</Link></p>
+      <ItemTable items={items} />
+    </>
   );
 }
 

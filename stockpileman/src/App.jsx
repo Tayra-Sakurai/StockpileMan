@@ -18,29 +18,21 @@ import ItemEdit from './Components/ItemEdit.jsx';
 import { Container } from 'react-bootstrap';
 import ItemAdd from './Components/ItemAdd.jsx';
 import ItemView from './Components/Views/ItemView.jsx';
-import liff from '@line/liff';
 import FilteredResult from './Components/FilteredResult.jsx';
 import ViewBase from './Components/Views/ViewBase.jsx';
 import CategoriesView from './Components/CategoryDetails/CategoriesView.jsx';
+import liff from '@line/liff';
 
 function App() {
   liff.init({
     liffId: import.meta.env.VITE_LIFF_ID,
   })
-    .then(() => {
-      if (liff.isLoggedIn()) {
-        liff.getProfile()
-          .then(profile => {
-            if (liff.isLoggedIn()) {
-              if (!import.meta.env.VITE_USERS.split(',').includes(profile.displayName)) {
-                location.replace('about://blank');
-              }
-            } else {
-              liff.login();
-            }
-          });
+    .then(
+      () => {
+        if (!liff.isLoggedIn())
+          liff.login();
       }
-    });
+    );
 
   return (
     <BrowserRouter>
