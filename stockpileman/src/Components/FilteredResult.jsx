@@ -17,6 +17,7 @@ import { supabase } from "../client";
 import ItemTable from './Views/ItemTable';
 import CategoriesView from "./CategoryDetails/CategoriesView";
 import Collapse from "react-bootstrap/Collapse";
+import Button from "react-bootstrap/Button";
 
 function FilteredResult() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -111,7 +112,7 @@ function FilteredResult() {
         <h1>
           在庫が少ない品目
         </h1>
-        <p>&lbrack;{opened ? "閉じる" : "展開"}&rbrack;</p>
+        <p>&#x5b;<Button variant="link" type="button">{opened ? "閉じる" : "展開"}</Button>&#x7b;</p>
       </hgroup>
       <Collapse in={opened}>
         <div id="collapse-table">
