@@ -27,11 +27,8 @@ function ItemRow(props) {
   const category = props.category;
   const expireDate = new Date(props.expireDate).toISOString().replace(/T.*$/, '');
   const life = new Date(props.expireDate).getTime();
-  const t = new Date().getTime();
-  const today = Date.UTC((Math.floor(t / (86400 * (10 ** 3))) * 86400000));
-  const remainingLife = life - today;
-  console.info(remainingLife);
-  const ONE_WEEK = 7 * 86400000
+  const today = new Date();
+  today.setTime(today.getTime() + 86400000 * 7);
 
   return (
     <tr>
@@ -39,7 +36,7 @@ function ItemRow(props) {
       <td>{category}</td>
       <td>
         {
-          remainingLife < ONE_WEEK ?
+          life < today ?
             (
               <strong>{name}</strong>
             ) :
@@ -48,7 +45,7 @@ function ItemRow(props) {
       </td>
       <td>
         {
-          remainingLife < ONE_WEEK ?
+          life < today ?
             (
               <strong>{expireDate}</strong>
             ) : expireDate
