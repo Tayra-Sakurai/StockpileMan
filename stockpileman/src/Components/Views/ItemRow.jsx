@@ -28,7 +28,7 @@ function ItemRow(props) {
   const expireDate = new Date(props.expireDate).toISOString().replace(/T.*$/, '');
   const life = new Date(props.expireDate).getTime();
   const today = new Date();
-  today.setTime(today.getTime() + 86400000 * 7);
+  today.setMonth(today.getMonth() + 1);
 
   return (
     <tr>
