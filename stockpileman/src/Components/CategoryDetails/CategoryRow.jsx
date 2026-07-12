@@ -10,6 +10,7 @@
  * 
  * You should have received a copy of the GNU Affero General Public License along with StockpileMan. If not, see <https://www.gnu.org/licenses/>.
  */
+import { Link } from "react-router-dom";
 
 /**
  * @typedef {object} Items
@@ -35,7 +36,9 @@ function CategoryRow({ category }) {
   return (
     <tr>
       <td>{category.Id}</td>
-      <td>{category.Name}</td>
+      <td>
+        <Link to={"/?category=" + encodeURIComponent(category.Name)}>{category.Name}</Link>
+      </td>
       <td>{category.Items[0].count}</td>
     </tr>
   );
