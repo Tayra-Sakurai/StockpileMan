@@ -103,13 +103,16 @@ function FilteredResult() {
 
   return (
     <>
-      <h1
+      <hgroup
         onClick={() => setOpened(!opened)}
         aria-controls="collapse-table"
         aria-expanded={opened}
       >
-        在庫が少ない品目
-      </h1>
+        <h1>
+          在庫が少ない品目
+        </h1>
+        <p>&lbrack;{opened ? "閉じる" : "展開"}&rbrack;</p>
+      </hgroup>
       <Collapse in={opened}>
         <div id="collapse-table">
           <CategoriesView maxItems={1} />
