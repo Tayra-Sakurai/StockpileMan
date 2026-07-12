@@ -31,7 +31,7 @@ function ItemRow(props) {
   today.setTime(today.getTime() + 86400000 * 7);
 
   return (
-    <tr>
+    <tr className={life < today ? "danger" : ""}>
       <td>{dId}</td>
       <td>{category}</td>
       <td>
