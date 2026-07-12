@@ -16,10 +16,12 @@ import FilterForm from "./FilterForm";
 import { supabase } from "../client";
 import ItemTable from './Views/ItemTable';
 import CategoriesView from "./CategoryDetails/CategoriesView";
+import Collapse from "react-bootstrap/Collapse";
 
 function FilteredResult() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [items, setItems] = useState([]);
+  const [opened, setOpened] = useState(true);
 
   useEffect(
     () => {
@@ -101,8 +103,18 @@ function FilteredResult() {
 
   return (
     <>
-      <h1>在庫が少ない品目</h1>
-      <CategoriesView maxItems={1} />
+      <h1
+        onClick={() => setOpened(!opened)}
+        aria-aria-controls="collapse-table"
+        aria-aria-expanded={opened}
+      >
+        在庫が少ない品目
+      </h1>
+      <Collapse in={opened}>
+        <div id="collapse-table">
+          <CategoriesView maxItems={1} />
+        </div>
+      </Collapse>
       <h1>検索</h1>
       <h2>検索フォーム</h2>
       <FilterForm

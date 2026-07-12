@@ -12,18 +12,47 @@
  */
 import { Link } from "react-router-dom";
 
+/**
+ * The item table row component.
+ * @param {Object} props The props.
+ * @param {number} props.dataId The data entry ID.
+ * @param {string} props.name The nameof the item.
+ * @param {string} props.category The category name.
+ * @param {string} props.expireDate The string which represents the life.
+ * @returns
+ */
 function ItemRow(props) {
   const dId = props.dataId;
   const name = props.name;
   const category = props.category;
   const expireDate = new Date(props.expireDate).toISOString().replace(/T.*$/, '');
+  const life = new Date(props.expireDate).getTime();
+  const t = new Date().getTime();
+  const today = Date.UTC((Math.floor(t / (86400 * (10 ** 3))) * 86400000));
+  const remainingLife = life - today;
+  const ONE_WEEK = 7 * 86400000
 
   return (
     <tr>
       <td>{dId}</td>
       <td>{category}</td>
-      <td>{name}</td>
-      <td>{expireDate}</td>
+      <td>
+        {
+          remainingLife < ONE_WEEK ?
+            (
+              <strong>{name}</strong>
+            ) :
+            name
+        }
+      </td>
+      <td>
+        {
+          remainingLife < ONE_WEEK ?
+            (
+              <strong>{expireDate}</strong>
+            ) : expireDate
+        }
+      </td>
       <td>
         <Link to={`/Edit/${dId}`}>編集</Link>
       </td>

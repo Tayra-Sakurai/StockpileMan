@@ -32,7 +32,7 @@ function OpCmd(props) {
       .from(table)
       .delete()
       .eq('Id', id);
-    navigate('/View/Items');
+    navigate(-1);
   }
 
   /**
