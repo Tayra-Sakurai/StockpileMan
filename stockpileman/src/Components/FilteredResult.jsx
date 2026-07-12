@@ -112,7 +112,7 @@ function FilteredResult() {
         <h1>
           在庫が少ない品目
         </h1>
-        <p>&#x5b;<Button variant="link" type="button">{opened ? "閉じる" : "展開"}</Button>&#x7b;</p>
+        <p>&#x5b;<Button variant="link" type="button">{opened ? "閉じる" : "展開"}</Button>&#x5d;</p>
       </hgroup>
       <Collapse in={opened}>
         <div id="collapse-table">
