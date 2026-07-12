@@ -105,8 +105,8 @@ function FilteredResult() {
     <>
       <h1
         onClick={() => setOpened(!opened)}
-        aria-aria-controls="collapse-table"
-        aria-aria-expanded={opened}
+        aria-controls="collapse-table"
+        aria-expanded={opened}
       >
         在庫が少ない品目
       </h1>

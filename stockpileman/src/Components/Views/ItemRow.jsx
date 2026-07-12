@@ -30,6 +30,7 @@ function ItemRow(props) {
   const t = new Date().getTime();
   const today = Date.UTC((Math.floor(t / (86400 * (10 ** 3))) * 86400000));
   const remainingLife = life - today;
+  console.info(remainingLife);
   const ONE_WEEK = 7 * 86400000
 
   return (
