@@ -112,11 +112,11 @@ function FilteredResult() {
         aria-expanded={opened}
       >
         <Col xs="8" sm="8" md="9" lg="10">
-          <h1>æ•°é‡ãŒå°‘ãªã„åœ¨åº«</h1>
+          <h1>”—Ê‚ª­‚È‚¢İŒÉ</h1>
         </Col>
         <Col xs="4" sm="4" md="3" lg="2">
           <div>
-            &#x5B;<Button variant="link" type="button">{opened ? "æŠ˜ã‚ŠãŸãŸã‚€" : "å±•é–‹"}</Button>&#x5D;
+            &#x5B;<Button variant="link" type="button">{opened ? "Ü‚è‚½‚½‚Ş" : "“WŠJ"}</Button>&#x5D;
           </div>
         </Col>
       </Row>
@@ -125,13 +125,13 @@ function FilteredResult() {
           <CategoriesView maxItems={1} />
         </div>
       </Collapse>
-      <h1>æ¤œç´¢</h1>
-      <h2>æ¤œç´¢ãƒ•ã‚©ãƒ¼ãƒ </h2>
+      <h1>ŒŸõ</h1>
+      <h2>ŒŸõƒtƒH[ƒ€</h2>
       <FilterForm
         searchParam={searchParams}
         setSearchParam={setSearchParams}
       />
-      <h2>æ¤œç´¢çµæœ</h2>
+      <h2>ŒŸõŒ‹‰Ê</h2>
       <ItemTable items={items} />
     </>
   );
