@@ -111,10 +111,10 @@ function FilteredResult() {
         aria-controls="collapse-table"
         aria-expanded={opened}
       >
-        <Col sm="8" md="10" lg="11">
+        <Col xs="6" sm="8" md="9" lg="10">
           <h1>数量が少ない在庫</h1>
         </Col>
-        <Col sm="4" md="2" lg="1">
+        <Col xs="6" sm="4" md="3" lg="2">
           <div>
             &#x5B;<Button variant="link" type="button">{opened ? "折りたたむ" : "展開"}</Button>&#x5D;
           </div>
