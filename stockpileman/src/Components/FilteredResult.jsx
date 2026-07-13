@@ -18,6 +18,8 @@ import ItemTable from './Views/ItemTable';
 import CategoriesView from "./CategoryDetails/CategoriesView";
 import Collapse from "react-bootstrap/Collapse";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function FilteredResult() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -104,16 +106,20 @@ function FilteredResult() {
 
   return (
     <>
-      <hgroup
+      <Row
         onClick={() => setOpened(!opened)}
         aria-controls="collapse-table"
         aria-expanded={opened}
       >
-        <h1>
-          在庫が少ない品目
-        </h1>
-        <p>&#x5b;<Button variant="link" type="button">{opened ? "閉じる" : "展開"}</Button>&#x5d;</p>
-      </hgroup>
+        <Col sm="8" md="10" lg="11">
+          <h1>数量が少ない在庫</h1>
+        </Col>
+        <Col sm="4" md="2" lg="1">
+          <div>
+            &#x5B;<Button variant="link" type="button">{opened ? "折りたたむ" : "展開"}</Button>&#x5D;
+          </div>
+        </Col>
+      </Row>
       <Collapse in={opened}>
         <div id="collapse-table">
           <CategoriesView maxItems={1} />

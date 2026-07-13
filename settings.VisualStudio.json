@@ -1,4 +1,5 @@
 /* Visual Studio Settings File */
 {
-  "environment.documents.saveWithSpecificEncoding": true
+  "environment.documents.saveWithSpecificEncoding": true,
+  "languages.typescript.formatting.general.packageJsonAutoImports": "auto"
 }
