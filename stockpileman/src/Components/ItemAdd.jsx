@@ -46,7 +46,7 @@ function ItemAdd() {
           .select('Id, Name')
           .eq('Name', cName);
         if (!error) {
-          cId = data.Id;
+          cId = data[0].Id;
         }
       }
 
