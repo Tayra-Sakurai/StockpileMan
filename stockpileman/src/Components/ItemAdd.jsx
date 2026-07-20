@@ -34,6 +34,7 @@ function ItemAdd() {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm({
     async defaultValues() {
       const cName = searchParams.get('category');
+      console.info(`category=${cName}`);
       /**
        * The category identifier.
        * @type {?number}
