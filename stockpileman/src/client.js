@@ -26,5 +26,9 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 if (!globalThis.__supabase)
   globalThis.__supabase = createClient(supabaseUrl, supabaseKey);
 
+/**
+ * The Supabase client.
+ * @type {import("@supabase/supabase-js").SupabaseClient<any, "public", "public", any, any>}
+ */
 export let supabase = globalThis.__supabase;
 console.info("Supabase Client was initialized.");

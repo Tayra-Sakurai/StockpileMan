@@ -14,7 +14,7 @@ import AddCmd from './AddCmd';
 import { Form } from "react-bootstrap";
 import ItemDetail from './ItemDetail';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { supabase } from '../client';
 import dateInputString from '../Utilities/DateInputString';
 
@@ -28,14 +28,34 @@ import dateInputString from '../Utilities/DateInputString';
  */
 
 function ItemAdd() {
+  const [searchParams] = useSearchParams();
+
   const currentDate = dateInputString(new Date());
   const { register, handleSubmit, formState: { errors }, setValue } = useForm({
-    defaultValues: {
-      category: null,
-      item: '',
-      dateBought: currentDate,
-      life: currentDate,
-      notes: '',
+    async defaultValues() {
+      const cName = searchParams.get('category');
+      /**
+       * The category identifier.
+       * @type {?number}
+       */
+      let cId = null;
+      if (cName) {
+        const { data, error } = await supabase
+          .from('Categories')
+          .select('Id, Name')
+          .eq('Name', cName);
+        if (!error) {
+          cId = data.Id;
+        }
+      }
+
+      return {
+        category: cId,
+        item: '',
+        dateBought: currentDate,
+        life: currentDate,
+        notes: '',
+      }
     },
   });
   const navigate = useNavigate();

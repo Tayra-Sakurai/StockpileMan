@@ -11,7 +11,7 @@
  * You should have received a copy of the GNU Affero General Public License along with StockpileMan. If not, see <https://www.gnu.org/licenses/>.
  */
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import FilterForm from "./FilterForm";
 import { supabase } from "../client";
 import ItemTable from './Views/ItemTable';
@@ -25,6 +25,7 @@ function FilteredResult() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [items, setItems] = useState([]);
   const [opened, setOpened] = useState(true);
+  const [ctg, setCtg] = useState('');
 
   useEffect(
     () => {
@@ -99,6 +100,7 @@ function FilteredResult() {
           result.push(datumn);
         }
         setItems(result);
+        setCtg(category ?? '');
       };
       search();
     }, [searchParams]
@@ -132,6 +134,7 @@ function FilteredResult() {
         setSearchParam={setSearchParams}
       />
       <h2>検索結果</h2>
+      <p><Link to={ctg ? `/Add?category=${ctg}` : '/Add'}>新規</Link></p>
       <ItemTable items={items} />
     </>
   );
