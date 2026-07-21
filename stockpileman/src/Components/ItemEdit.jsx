@@ -65,7 +65,7 @@ function ItemEdit() {
         CategoryId: parseInt(data.Category),
         Notes: data.Notes,
         BoughtAt: new Date(data.DateBought).toISOString(),
-        ExpireDate: data.Life ? new Date(data.Life).toISOString() : null,
+        ExpireDate: data.Life ? new Date(data.Life).toISOString() : 'infinity',
       })
       .eq('Id', itid);
     navigate(-1);

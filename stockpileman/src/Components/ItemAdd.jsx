@@ -72,7 +72,7 @@ function ItemAdd() {
         CategoryId: parseInt(data.category),
         Name: data.item,
         BoughtAt: new Date(data.dateBought).toISOString(),
-        ExpireDate: data.life ? new Date(data.life).toISOString() : null,
+        ExpireDate: data.life ? new Date(data.life).toISOString() : 'infinity',
         Notes: data.notes,
       });
     navigate(-1);
