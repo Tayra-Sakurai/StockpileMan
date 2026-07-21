@@ -25,27 +25,28 @@ function ItemRow(props) {
   const dId = props.dataId;
   const name = props.name;
   const category = props.category;
-  const expireDate = new Date(props.expireDate).toISOString().replace(/T.*$/, '');
-  const life = new Date(props.expireDate).getTime();
+  const expireDate = props.expireDate.toLocaleLowerCase() == 'infinity' ? 'なし' : new Date(props.expireDate).toISOString().replace(/T.*$/, '');
+  const life = props.expireDate.toLocaleLowerCase() == 'infinity' ? Infinity : Date.parse(props.expireDate);
   const today = new Date();
   today.setMonth(today.getMonth() + 1);
+  const dueDate = today.getTime();
 
   return (
     <tr>
-      <td className={life < today ? "text-danger" : ""}>{dId}</td>
-      <td className={life < today ? "text-danger" : ""}>{category}</td>
-      <td className={life < today ? "text-danger" : ""}>
+      <td className={life < dueDate ? "text-danger" : ""}>{dId}</td>
+      <td className={life < dueDate ? "text-danger" : ""}>{category}</td>
+      <td className={life < dueDate ? "text-danger" : ""}>
         {
-          life < today ?
+          life < dueDate ?
             (
               <strong>{name}</strong>
             ) :
             name
         }
       </td>
-      <td className={life < today ? "text-danger" : ""}>
+      <td className={life < dueDate ? "text-danger" : ""}>
         {
-          life < today ?
+          life < dueDate ?
             (
               <strong>{expireDate}</strong>
             ) : expireDate

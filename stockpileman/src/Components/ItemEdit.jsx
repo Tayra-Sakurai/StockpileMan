@@ -47,7 +47,7 @@ function ItemEdit() {
           Category: entry.CategoryId.toString(),
           Name: entry.Name,
           DateBought: new Date(entry.BoughtAt).toISOString().replace(/T.*$/i, ''),
-          Life: new Date(entry.ExpireDate).toISOString().replace(/T.*$/i, ''),
+          Life: (entry.ExpireDate.toLocaleLowerCase() == 'infinity' ? '' : new Date(entry.ExpireDate).toISOString().replace(/T.*$/i, '')),
           Notes: entry.Notes,
         };
       }
@@ -65,7 +65,7 @@ function ItemEdit() {
         CategoryId: parseInt(data.Category),
         Notes: data.Notes,
         BoughtAt: new Date(data.DateBought).toISOString(),
-        ExpireDate: new Date(data.Life).toISOString(),
+        ExpireDate: data.Life ? new Date(data.Life).toISOString() : null,
       })
       .eq('Id', itid);
     navigate(-1);

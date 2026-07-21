@@ -79,9 +79,7 @@ function ItemDetail({ categoryId, nameId, dateBId, dateEId, notesId, register, e
             type="date"
             isInvalid={!!errors[dateEId]}
             isValid={!errors[dateEId]}
-            {...register(dateEId, {
-              required: '賞味期限を入力してください．',
-            })}
+            {...register(dateEId)}
           />
           <Form.Control.Feedback type="invalid">
             {errors[dateEId]?.message}

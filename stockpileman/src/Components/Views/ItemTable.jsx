@@ -38,7 +38,19 @@ function ItemTable(props) {
    * @type {Array<Item>}
    */
   const items = props.items;
-  items.sort((a, b) => new Date(a.ExpireDate).getTime() - new Date(b.ExpireDate).getTime() || a.Name.localeCompare(b.Name) || a.Categories.Name.localeCompare(b.Categories.Name) || a.Id - b.Id);
+  items.sort(
+    function (a, b) {
+      if (a.ExpireDate.toLocaleLowerCase() == 'infinity' && b.ExpireDate.toLocaleLowerCase() != 'infinity') {
+        return -1;
+      } else if (b.ExpireDate.toLocaleLowerCase() == 'infinity' && a.ExpireDate.toLocaleLowerCase() != 'infinity') {
+        return 1;
+      } else if (a.ExpireDate == b.ExpireDate || Date.parse(a.ExpireDate) == Date.parse(b.ExpireDate)) {
+        return a.Name.localeCompare(b.Name) || a.Id - b.Id;
+      } else {
+        return Date.parse(b.ExpireDate) - Date.parse(a.ExpireDate);
+      }
+    }
+  );
 
   return (
     <Table striped hover>
