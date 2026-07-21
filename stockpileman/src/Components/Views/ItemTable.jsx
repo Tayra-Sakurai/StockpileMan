@@ -41,9 +41,9 @@ function ItemTable(props) {
   items.sort(
     function (a, b) {
       if (a.ExpireDate.toLocaleLowerCase() == 'infinity' && b.ExpireDate.toLocaleLowerCase() != 'infinity') {
-        return -1;
-      } else if (b.ExpireDate.toLocaleLowerCase() == 'infinity' && a.ExpireDate.toLocaleLowerCase() != 'infinity') {
         return 1;
+      } else if (b.ExpireDate.toLocaleLowerCase() == 'infinity' && a.ExpireDate.toLocaleLowerCase() != 'infinity') {
+        return -1;
       } else if (a.ExpireDate == b.ExpireDate || Date.parse(a.ExpireDate) == Date.parse(b.ExpireDate)) {
         return a.Name.localeCompare(b.Name) || a.Id - b.Id;
       } else {
