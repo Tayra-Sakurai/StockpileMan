@@ -47,7 +47,7 @@ function ItemTable(props) {
       } else if (a.ExpireDate == b.ExpireDate || Date.parse(a.ExpireDate) == Date.parse(b.ExpireDate)) {
         return a.Name.localeCompare(b.Name) || a.Id - b.Id;
       } else {
-        return Date.parse(b.ExpireDate) - Date.parse(a.ExpireDate);
+        return Date.parse(a.ExpireDate) - Date.parse(b.ExpireDate);
       }
     }
   );
