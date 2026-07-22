@@ -24,7 +24,10 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 if (!globalThis.__supabase)
-  globalThis.__supabase = createClient(supabaseUrl, supabaseKey);
+  globalThis.__supabase = createClient(
+    supabaseUrl,
+    supabaseKey
+  );
 
 /**
  * The Supabase client.
