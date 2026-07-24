@@ -30,8 +30,6 @@ function App() {
   })
     .then(
       () => {
-        if (!liff.isLoggedIn())
-          liff.login();
         supabase.auth.getUser()
           .then(
             ({ data: { user }, error }) => {
