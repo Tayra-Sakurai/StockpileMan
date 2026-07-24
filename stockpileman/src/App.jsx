@@ -27,22 +27,7 @@ import { supabase } from './client';
 function App() {
   liff.init({
     liffId: import.meta.env.VITE_LIFF_ID,
-  })
-    .then(
-      () => {
-        supabase.auth.getUser()
-          .then(
-            ({ data: { user }, error }) => {
-              console.log('user: ' + user);
-              alert('Error: ' + error);
-              if (error)
-                supabase.auth.signInWithOAuth({
-                  provider: 'custom:line'
-                });
-            }
-          );
-      }
-    );
+  });
 
   return (
     <BrowserRouter>

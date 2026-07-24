@@ -32,6 +32,9 @@ if (!globalThis.__supabase) {
     supabaseUrl,
     supabaseKey
   );
+  globalThis.__supabase.auth.signInWithOAuth({
+    provider: 'custom:line'
+  });
 }
 
 /**
