@@ -32,9 +32,15 @@ function App() {
       () => {
         if (!liff.isLoggedIn())
           liff.login();
-        supabase.auth.signInWithOAuth({
-          provider: 'custom:line'
-        });
+        supabase.auth.getUser()
+          .then(
+            ({ data: { user }, error }) => {
+              if (error || !user)
+                supabase.auth.signInWithOAuth({
+                  provider: 'custom:line'
+                });
+            }
+          );
       }
     );
 
