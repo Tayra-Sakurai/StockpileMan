@@ -35,7 +35,7 @@ function App() {
             ({ data: { user }, error }) => {
               console.log('user: ' + user);
               console.info('Error: ' + error);
-              if (error || !user)
+              if (error)
                 supabase.auth.signInWithOAuth({
                   provider: 'custom:line'
                 });
