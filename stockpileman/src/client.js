@@ -23,11 +23,16 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
  */
 const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-if (!globalThis.__supabase)
+if (!globalThis.__supabase) {
+  /**
+   * The supabase client.
+   * @type {import("@supabase/supabase-js").SupabaseClient<any, "public", "public", any, any>}
+   */
   globalThis.__supabase = createClient(
     supabaseUrl,
     supabaseKey
   );
+}
 
 /**
  * The Supabase client.
