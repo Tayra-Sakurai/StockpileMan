@@ -27,7 +27,23 @@ import { supabase } from './client';
 function App() {
   liff.init({
     liffId: import.meta.env.VITE_LIFF_ID,
-  });
+  })
+    .then(
+      () => {
+        if (!liff.isLoggedIn())
+          liff.login();
+        else {
+          const accessToken = liff.getAccessToken();
+
+          if (accessToken) {
+            supabase.auth.signInWithIdToken({
+              provider: 'custom:line',
+              access_token: accessToken,
+            });
+          }
+        }
+      }
+  );
 
   return (
     <BrowserRouter>
@@ -51,7 +67,7 @@ function App() {
         <Copyright />
       </footer>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App
