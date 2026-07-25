@@ -26,7 +26,12 @@ import liff from '@line/liff';
 function App() {
   liff.init({
     liffId: import.meta.env.VITE_LIFF_ID,
-  });
+  })
+    .then(
+      () => {
+        if (!liff.isLoggedIn())
+          liff.login();
+      });
 
   return (
     <BrowserRouter>
