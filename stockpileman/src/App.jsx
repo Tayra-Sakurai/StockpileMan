@@ -37,9 +37,8 @@ function App() {
 
           if (accessToken) {
             console.info(`Access token: ${accessToken}`);
-            supabase.auth.signInWithIdToken({
+            supabase.auth.signInWithOAuth({
               provider: 'custom:line',
-              access_token: accessToken,
             });
           }
         }
