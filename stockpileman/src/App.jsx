@@ -22,28 +22,11 @@ import FilteredResult from './Components/FilteredResult.jsx';
 import ViewBase from './Components/Views/ViewBase.jsx';
 import CategoriesView from './Components/CategoryDetails/CategoriesView.jsx';
 import liff from '@line/liff';
-import { supabase } from './client';
 
 function App() {
   liff.init({
     liffId: import.meta.env.VITE_LIFF_ID,
-  })
-    .then(
-      () => {
-        if (!liff.isLoggedIn())
-          liff.login();
-        else {
-          const accessToken = liff.getAccessToken();
-
-          if (accessToken) {
-            console.info(`Access token: ${accessToken}`);
-            supabase.auth.signInWithOAuth({
-              provider: 'custom:line',
-            });
-          }
-        }
-      }
-  );
+  });
 
   return (
     <BrowserRouter>
