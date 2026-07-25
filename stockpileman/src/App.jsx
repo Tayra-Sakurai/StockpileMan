@@ -36,6 +36,7 @@ function App() {
           const accessToken = liff.getAccessToken();
 
           if (accessToken) {
+            console.info(`Access token: ${accessToken}`);
             supabase.auth.signInWithIdToken({
               provider: 'custom:line',
               access_token: accessToken,
