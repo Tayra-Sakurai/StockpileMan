@@ -93,7 +93,8 @@ function FilteredResult() {
             console.info('ExpireDate=');
             console.info(new Date(datumn.ExpireDate));
             console.groupEnd();
-            if (new Date(d2) < new Date(datumn.ExpireDate)) {
+            if (datumn.ExpireDate.toLocaleLowerCase() == "infinity" ||
+              (new Date(d2) < new Date(datumn.ExpireDate))) {
               continue;
             }
           }
