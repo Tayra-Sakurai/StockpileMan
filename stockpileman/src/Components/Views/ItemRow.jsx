@@ -25,7 +25,18 @@ function ItemRow(props) {
   const dId = props.dataId;
   const name = props.name;
   const category = props.category;
-  const expireDate = props.expireDate.toLocaleLowerCase() == 'infinity' ? 'なし' : new Date(props.expireDate).toISOString().replace(/T.*$/, '');
+  /**
+   * The date time formatting options.
+   * @type {Intl.DateTimeFormatOptions}
+   */
+  const options = {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    weekday: 'long',
+  };
+  const dateFormatter = new Intl.DateTimeFormat('ja-JP', options);
+  const expireDate = props.expireDate.toLocaleLowerCase() == 'infinity' ? 'なし' : dateFormatter.format(new Date(props.expireDate));
   const life = props.expireDate.toLocaleLowerCase() == 'infinity' ? Infinity : Date.parse(props.expireDate);
   const today = new Date();
   today.setMonth(today.getMonth() + 1);
