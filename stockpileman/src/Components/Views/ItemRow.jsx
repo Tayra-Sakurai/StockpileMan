@@ -33,7 +33,6 @@ function ItemRow(props) {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-    weekday: 'long',
   };
   const dateFormatter = new Intl.DateTimeFormat('ja-JP', options);
   const expireDate = props.expireDate.toLocaleLowerCase() == 'infinity' ? 'なし' : dateFormatter.format(new Date(props.expireDate));
